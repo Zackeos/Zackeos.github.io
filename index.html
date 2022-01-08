@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <center>
+        <h1>Enter Terms:</h1>
+        <p>First Term</p>
+        <input id ="a" type="text">
+        <p>Second Term</p>
+        <input id ="b" type="text">
+        <p>Third Term</p>
+        <input id ="c" type="text">
+      </center>
+    </div>
+    <div>
+      <center>
+        <h1>Nth Term:</h1>
+        <p id = "output"></p>
+      </center>
+    </div>
+
+    <script>
+      var first = 0
+      var second = 0
+      var third = 0
+      setValueOnChangeA = function(){
+        first = document.getElementById("a").value
+        console.log(first,second,third)
+        recalculate(first,second,third)
+      }
+      setValueOnChangeB = function(){
+        second = document.getElementById("b").value
+        console.log(first,second,third)
+        recalculate(first,second,third)
+      }
+      setValueOnChangeC = function(){
+        third = document.getElementById("c").value
+        console.log(first,second,third)
+        recalculate(first,second,third)
+      }
+      recalculate = function(a,b,c){
+        if (((a-(((c-b)-(b-a))/2))-((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2))))) == 0){
+          var lastpart = ""
+        }else if(((a-(((c-b)-(b-a))/2))-((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2))))) > 0){
+          var lastpart = "+ " + ((a-(((c-b)-(b-a))/2))-((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2)))))
+          var neg = 0
+        }else{
+          var lastpart = "- " + -1*(((a-(((c-b)-(b-a))/2))-((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2))))))
+          var neg = 1
+        }
+        if (((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2)))) == 0){
+          var midpart = ""
+          if((lastpart !== "")){
+            var temp = lastpart.substring(1)
+            lastpart = temp
+          }
+          var temp = lastpart.substring(1)
+          lastpart = temp
+        }else if(((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2)))) == 1){
+          var midpart = "+ n "
+        }else if(((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2)))) == -1){
+          var midpart = "- n "
+        }else if(((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2)))) > 0){
+          var midpart = "+ " + ((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2)))) + "n "
+        }else{
+          var midpart = "- " + -1*((c-(9*(((c-b)-(b-a))/2)))-(b-(4*(((c-b)-(b-a))/2)))) + "n "
+        }
+        if((((c-b)-(b-a))/2) == 0){
+          firstpart = ""
+          if((midpart !== "")&&(midpart.indexOf("-")==-1)){
+            var temp2 = midpart.substring(1)
+            midpart = temp2
+          }
+        }else if((((c-b)-(b-a))/2) == 1){
+          var firstpart = "n² "
+        }else if((((c-b)-(b-a))/2) == -1){
+          var firstpart = "-n² "
+        }else if((((c-b)-(b-a))/2) > 0){
+          var firstpart = (((c-b)-(b-a))/2) + "n² "
+        }else{
+          var firstpart = "- "+ -1*(((c-b)-(b-a))/2) + "n² "
+        }
+        if(midpart == ""){
+          if((firstpart !== "")&&((firstpart.indexOf("+")==-1)&&(neg == 0))){
+          var temp3 = firstpart + " + "
+          firstpart = temp3
+        }else if((firstpart !== "")&&((firstpart.indexOf("-")==-1))){
+          var temp3 = firstpart + " - "
+          firstpart = temp3}
+        }
+        document.getElementById("output").innerText = firstpart + midpart + lastpart
+      }
+      document.getElementById("a").addEventListener("change",setValueOnChangeA)
+      document.getElementById("b").addEventListener("change",setValueOnChangeB)
+      document.getElementById("c").addEventListener("change",setValueOnChangeC)
+      
+    </script>
+  </body>
+</html>
